@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './componenets/Navbar';
+import Booking from './componenets/Booking'
+import Topnav from './componenets/Topnav';
 function App() {
+  fetch('https://myfakeapi.com/api/cars/name/Mitsubishi').then((res) => res.json()).then((data) => console.log(data));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App row bg-light m-0 p-0">
+      <Navbar />
+      <div className="row col-xl-10 col-lg-9 col-md-8 col-12 bg-light p-0 m-0">
+        <Topnav />
+        <Routes>
+          <Route path='/' element={<Booking />} />
+        </Routes>
+      </div>
     </div>
   );
 }
