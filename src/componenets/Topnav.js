@@ -1,4 +1,4 @@
-import Logo from './Logo'
+import logo from '../img/logo.png'
 import Dashboard from '../img/Dashboard.png'
 import Assets from '../img/Assets.png'
 import Booking from '../img/Booking.png'
@@ -10,6 +10,8 @@ import Messages from '../img/Messages.png'
 import Settings from '../img/Settings.png'
 import Logout from '../img/Logout.png'
 import Navlist from './Navlist'
+import profile from '../img/portrait.png'
+import notification from '../img/notification.png'
 
 function Topnav() {
     let item_list = [
@@ -73,22 +75,53 @@ function Topnav() {
             id: 'Logout'
         }
     ];
+    let profile_list = [
+        {
+            imgsrc: profile,
+            imgalt: 'Profile',
+            text: 'Profile',
+            id: 'Profile'
+        },
+        {
+            imgsrc: notification,
+            imgalt: 'Notification',
+            text: 'Notification',
+            id: 'Notification'
+        },
+    ]
     return (
-        <nav className="topnavbar navbar-expand-md sticky-top p-3 col-12 bg-white">
-            <div className="container-fluid">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+        <nav className="topnavbar navbar-expand-md sticky-top p-3 col-12 bg-white" id='topnav'>
+            <div className="">
+                <button className="navbar-toggler d-md-none d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon col-6">
+                        <img src={logo} alt="logo" />
+                    </span>
+                    <h6 className='m-0 ms-1 mt-1 p-0 col-6'>Motiv.</h6>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <form className="d-flex col-4" role="search">
-                        <input className="form-control me-2 p-2" type="search" placeholder="&#xf002; |Search or Type" aria-label="Search" />
-                    </form>
-                    <ul className="navbar-nav d-md-none me-auto mb-2 mb-lg-0">
-                        {Navlist(item_list)}
+                    <div className='row col-12 d-none d-md-flex justify-content-between'>
+                        <form className="ps-4 col-4" role="search">
+                            <div className='search-container '>
+                                <input className="form-control border-0 bg-color1 me-2 p-2" type="search" placeholder="&#xf002; | Search or Type" aria-label="Search" />
+                            </div>
+                        </form>
+                        <div className="d-flex col-2 pe-5 justify-content-around">
+                            <button className="col-4 border-0 bg-white rounded-circle"><img src={notification} alt="notification" className='col-8' /></button>
+                            <button className="col-4 border-0 bg-white rounded-circle"><img src={profile} alt="profile" className='rounded-circle col-12' /></button>
+                        </div>
+                    </div>
+                    <ul className="navbar-nav d-md-none col-12  me-auto mb-2 mb-lg-0">
+                        <div className='top_nav_item col-sm-4 col-6'>
+                            {Navlist(item_list)}
+                            <div className='d-md-none d-flex'>
+                                {Navlist(profile_list)}
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
         </nav>
-    )
+    );
+
 }
 export default Topnav;
