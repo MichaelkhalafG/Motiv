@@ -12,12 +12,10 @@ function CarsCard(props) {
             <div className="bg-white rounded-4 p-3">
                 <div className="card-body row">
                     <div className='col-10'>
-                        <h6 className="card-title">{props.car}</h6>
-                        <p className="card-text ">{props.car_model}</p>
+                        <h6 className="card-title">{props.car_model}</h6>
+                        <p className="card-text ">{props.car}</p>
                     </div>
-                    <button className="border-0 bg-white col-2" onClick={() => { favorno = !favorno }} id={props.id} >
-                        {AddFav(favorno)}
-                    </button>
+                    <AddFav />
                 </div>
                 <div className="row justify-content-center col-12">
                     <img src={car} className="col-7 car_card_img" alt="car1" />
@@ -40,9 +38,10 @@ function CarsCard(props) {
                         <span className="col-10 m-0 p-2" >availability : {props.availability.toString()}</span>
                     </div>
                 </div>
-                <div className='row py-4 justify-content-center'>
-                    <button className="btn btn-secondary col-10 p-2 border-0 rounded-4">
-                        <h6 className='text-center m-0 py-1'> Buy {props.car_model} {props.car_model_year} Now</h6>
+                <div className='row pb-3 pt-0 justify-content-center'>
+                    <svg className="col-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#caa5fd" fillOpacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+                    <button className="btn btn-outline-light bg-color2 col-9 p-2 border-0 rounded-4">
+                        <h6 className='text-center m-0 py-1'> Buy {props.car_model} {props.car_model_year}</h6>
                     </button>
                 </div>
             </div>

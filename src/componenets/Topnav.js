@@ -100,14 +100,14 @@ function Topnav() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <div className='row col-12 d-none d-md-flex justify-content-between'>
-                        <form className="ps-4 col-4" role="search">
+                        <form className="ps-4 pt-2 col-4" role="search">
                             <div className='search-container '>
                                 <input className="form-control border-0 bg-color1 me-2 p-2" type="search" placeholder="&#xf002; | Search or Type" aria-label="Search" />
                             </div>
                         </form>
-                        <div className="d-flex col-2 pe-5 justify-content-around">
-                            <button className="col-4 border-0 bg-white rounded-circle"><img src={notification} alt="notification" className='col-8' /></button>
-                            <button className="col-4 border-0 bg-white rounded-circle"><img src={profile} alt="profile" className='rounded-circle col-12' /></button>
+                        <div className="d-flex col-xl-2 col-lg-3 col-md-4 pb-0 col-6 pe-2 justify-content-around">
+                            <button className="col-4 border-0 py-0 px-2 bg-white rounded-circle"><img src={notification} alt="notification" className='col-8' /></button>
+                            <button className="col-4 border-0 py-0 px-2 bg-white rounded-circle"><img src={profile} alt="profile" className='rounded-circle col-12' /></button>
                         </div>
                     </div>
                     <ul className="navbar-nav d-md-none col-12  me-auto mb-2 mb-lg-0">
