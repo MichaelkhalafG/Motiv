@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import CarsCard from "./CarsCard";
+import Loading from './Loading';
 function Booking(params) {
     const [MitsubishiCars, setMitsubishiCars] = useState([]);
     const [BMWCars, setBMWCars] = useState([]);
@@ -9,7 +10,6 @@ function Booking(params) {
     const [CarType, setCarType] = useState('');
     const [CarPrice, setCarPrice] = useState('');
     const [Cars, setCars] = useState([]);
-    const [searchQuery, setSearchQuery] = useState("");
     useEffect(() => {
         setneworold('Old & New');
         setCarType('Mitsubishi');
@@ -21,46 +21,58 @@ function Booking(params) {
     }, []);
     console.log(Cars);
     let element;
-    if (neworold === 'Old & New') {
-        element = Cars.map(((car) => CarsCard(car)));
-    } else if (neworold === 'New') {
-        element = Cars.map(((car) => car.car_model_year >= 2000 ? CarsCard(car) : null));
-    } else if (neworold === 'Old') {
-        element = Cars.map(((car) => car.car_model_year < 2000 ? CarsCard(car) : null));
+    if (Cars.length === 0) {
+        element = <Loading />
+    } else {
+        if (neworold === 'Old & New') {
+            element = Cars.map(((car) => CarsCard(car)));
+        } else if (neworold === 'New') {
+            element = Cars.map(((car) => car.car_model_year >= 2000 ? CarsCard(car) : null));
+        } else if (neworold === 'Old') {
+            element = Cars.map(((car) => car.car_model_year < 2000 ? CarsCard(car) : null));
+        }
+        if (CarPrice === 'All Cars') {
+            element = Cars.map(((car) => CarsCard(car)));
+        } else if (CarPrice === '1000 $ - 2000 $') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '2000 $ - 3000 $') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 ? CarsCard(car) : null));
+        } else if (CarPrice === '3000 $ - 4000 $') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 ? CarsCard(car) : null));
+        }
+        if (CarPrice === 'All Cars' && neworold === 'Old & New') {
+            element = Cars.map(((car) => CarsCard(car)));
+        } else if (CarPrice === 'All Cars' && neworold === 'New') {
+            element = Cars.map(((car) => car.car_model_year >= 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === 'All Cars' && neworold === 'Old') {
+            element = Cars.map(((car) => car.car_model_year < 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '1000 $ - 2000 $' && neworold === 'Old & New') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '1000 $ - 2000 $' && neworold === 'New') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 && car.car_model_year >= 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '1000 $ - 2000 $' && neworold === 'Old') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 && car.car_model_year < 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '2000 $ - 3000 $' && neworold === 'Old & New') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 ? CarsCard(car) : null));
+        } else if (CarPrice === '2000 $ - 3000 $' && neworold === 'New') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 && car.car_model_year >= 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '2000 $ - 3000 $' && neworold === 'Old') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 && car.car_model_year < 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '3000 $ - 4000 $' && neworold === 'Old & New') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 ? CarsCard(car) : null));
+        } else if (CarPrice === '3000 $ - 4000 $' && neworold === 'New') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 && car.car_model_year >= 2000 ? CarsCard(car) : null));
+        } else if (CarPrice === '3000 $ - 4000 $' && neworold === 'Old') {
+            element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 && car.car_model_year < 2000 ? CarsCard(car) : null));
+        }
     }
-    if (CarPrice === 'All Cars') {
-        element = Cars.map(((car) => CarsCard(car)));
-    } else if (CarPrice === '1000 $ - 2000 $') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '2000 $ - 3000 $') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 ? CarsCard(car) : null));
-    } else if (CarPrice === '3000 $ - 4000 $') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 ? CarsCard(car) : null));
-    }
-    if (CarPrice === 'All Cars' && neworold === 'Old & New') {
-        element = Cars.map(((car) => CarsCard(car)));
-    } else if (CarPrice === 'All Cars' && neworold === 'New') {
-        element = Cars.map(((car) => car.car_model_year >= 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === 'All Cars' && neworold === 'Old') {
-        element = Cars.map(((car) => car.car_model_year < 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '1000 $ - 2000 $' && neworold === 'Old & New') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '1000 $ - 2000 $' && neworold === 'New') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 && car.car_model_year >= 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '1000 $ - 2000 $' && neworold === 'Old') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 1000 && parseFloat(car.price.replaceAll("$", "")) < 2000 && car.car_model_year < 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '2000 $ - 3000 $' && neworold === 'Old & New') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 ? CarsCard(car) : null));
-    } else if (CarPrice === '2000 $ - 3000 $' && neworold === 'New') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 && car.car_model_year >= 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '2000 $ - 3000 $' && neworold === 'Old') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 2000 && parseFloat(car.price.replaceAll("$", "")) < 3000 && car.car_model_year < 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '3000 $ - 4000 $' && neworold === 'Old & New') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 ? CarsCard(car) : null));
-    } else if (CarPrice === '3000 $ - 4000 $' && neworold === 'New') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 && car.car_model_year >= 2000 ? CarsCard(car) : null));
-    } else if (CarPrice === '3000 $ - 4000 $' && neworold === 'Old') {
-        element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 && car.car_model_year < 2000 ? CarsCard(car) : null));
+    function isempty() {
+        if (Cars.length === 0) {
+            element =
+                <div class="alert alert-danger py-5" role="alert">
+                    ther is no cars
+                </div>
+        }
     }
     return (
         <div className="p-5 pe-4 pt-4 col-12 booking_tap">

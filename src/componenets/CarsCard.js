@@ -5,10 +5,9 @@ import Vector3 from '../img/Vector3.png'
 import Vector4 from '../img/Vector4.png'
 import AddFav from './AddFav'
 function CarsCard(props) {
-    let favorno = false;
     return (
         <div className="card h-100 border-0 col-xl-4 bg-light col-sm-6 col-12 align-self-center p-1"
-            data-aos="fade-up" data-aos-duration="900" key={props.id} >
+            data-aos="fade-up" data-aos-duration="1500" key={props.id} >
             <div className="bg-white rounded-4 p-3">
                 <div className="card-body row">
                     <div className='col-10'>

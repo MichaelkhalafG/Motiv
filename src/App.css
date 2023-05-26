@@ -52,6 +52,7 @@
     position: absolute !important;
     top: 0;
     right: 0;
+    min-height: 100vh;
 }
 .search-container {
     position: relative;
@@ -73,4 +74,7 @@
 }
 .bg-color2{
     background-color: #caa5fd !important;
+}
+.loading_tap{
+    padding-top: 20vh !important;
 }
