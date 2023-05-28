@@ -78,3 +78,51 @@
 .loading_tap{
     padding-top: 20vh !important;
 }
+.moving_button{
+    height: fit-content !important;
+    width: 700px !important;
+    position: absolute;
+    top: 2px;
+    left:350px ;
+    transition: left 5s;
+}
+.moving_button_after_click {
+    height: fit-content !important;
+    width: 750px !important;
+    position: absolute;
+    top: 2px;
+    left: -450px;
+    transition: left 5s;
+}
+.moving_car{
+    position: absolute;
+    
+}
+.car_body{
+    position: absolute;
+    height: 35px;
+    top: -4px;
+    left: 100px;
+    transition: left 3s;
+    transition-delay: 1s;
+    transition-timing-function: ease;
+}
+.car_body_after_click{
+    position: absolute;
+    height: 35px;
+    top: -4px;
+    left: 500px;
+    transition: left 3s;
+    transition-delay: 1s;
+    transition-timing-function: ease;
+}
+.moving_car_container{
+    position: relative;
+}
+.button_moving_action{
+    overflow: hidden;
+    position: relative;
+}
+.done_img{
+    height: fit-content;
+}

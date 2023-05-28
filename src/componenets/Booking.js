@@ -19,7 +19,6 @@ function Booking(params) {
         fetch('https://myfakeapi.com/api/cars/model/Golf').then((res) => res.json()).then((data) => { setGolfCars(data.Cars); });
         fetch('https://myfakeapi.com/api/cars/model/Range Rover').then((res) => res.json()).then((data) => { setRange_RoverCars(data.Cars); });
     }, []);
-    console.log(Cars);
     let element;
     if (Cars.length === 0) {
         element = <Loading />
@@ -66,14 +65,14 @@ function Booking(params) {
             element = Cars.map(((car) => parseFloat(car.price.replaceAll("$", "")) >= 3000 && parseFloat(car.price.replaceAll("$", "")) < 4000 && car.car_model_year < 2000 ? CarsCard(car) : null));
         }
     }
-    function isempty() {
-        if (Cars.length === 0) {
-            element =
-                <div class="alert alert-danger py-5" role="alert">
-                    ther is no cars
-                </div>
-        }
-    }
+    // function isempty() {
+    //     if (Cars.length === 0) {
+    //         element =
+    //             <div class="alert alert-danger py-5" role="alert">
+    //                 ther is no cars
+    //             </div>
+    //     }
+    // }
     return (
         <div className="p-5 pe-4 pt-4 col-12 booking_tap">
             <h4 className="my-3 ms-2">Booking</h4>

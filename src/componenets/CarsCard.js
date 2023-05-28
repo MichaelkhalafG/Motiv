@@ -4,7 +4,22 @@ import Vector2 from '../img/Vector2.png'
 import Vector3 from '../img/Vector3.png'
 import Vector4 from '../img/Vector4.png'
 import AddFav from './AddFav'
+import BuyButton from './BuyButton'
 function CarsCard(props) {
+    let id = ['#', props.car_model, props.car_model_year, props.id];
+    id = id.join('').replaceAll(' ', '');
+    let id2 = ['#', props.car_model, props.car_model_year, props.id, "2"];
+    id2 = id2.join('').replaceAll(' ', '');
+    let button_name = "Buy " + props.car_model + " " + props.car_model_year;
+    let button_props = {
+        car_model: props.car_model,
+        car: props.car,
+        id_for_function: id,
+        id_for_function2: id2,
+        id: id.replaceAll('#', ''),
+        id2: id2.replaceAll('#', ''),
+        Name: button_name
+    }
     return (
         <div className="card h-100 border-0 col-xl-4 bg-light col-sm-6 col-12 align-self-center p-1"
             data-aos="fade-up" data-aos-duration="1500" key={props.id} >
@@ -38,10 +53,7 @@ function CarsCard(props) {
                     </div>
                 </div>
                 <div className='row pb-3 pt-0 justify-content-center'>
-                    <svg className="col-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#caa5fd" fillOpacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-                    <button className="btn btn-outline-light bg-color2 col-9 p-2 border-0 rounded-4">
-                        <h6 className='text-center m-0 py-1'> Buy {props.car_model} {props.car_model_year}</h6>
-                    </button>
+                    {BuyButton(button_props)}
                 </div>
             </div>
         </div>
